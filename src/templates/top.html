@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <link href="/static/bootstrap.min.css" rel="stylesheet" />
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" />
+    <meta charset="UTF-8"/>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="/static/jquery-3.3.1.min.js"></script>
+    <script src="/static/popper.min.js"></script>
+    <script src="/static/bootstrap.min.js"></script>
+
+    <title>KCoin - top</title>
+</head>
+
+<body class="p-3 mb-2 bg-dark text-white">
+    <nav class="navbar navbar-expand-lg navbar-primary bg-dark">
+        <h1>KCoin</h1>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+            <li class="nav-item active">
+                <a class="nav-link" href="/">Главная <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">ТОП-10</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Кошелёк
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="/wallet">Счёт</a>
+                    <a class="dropdown-item" href="/send">Переводы</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+    </nav>
+
+    <div class="container">
+        <h1>ТОП-10</h1>
+        {% if res %}
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Имя</th>
+                        <th scope="col">Сумма</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <ul class="list-group">
+                    {% for number, name, val in res %}
+                        </tr>
+                        <th scope="row">{{ number }}</th>
+                        <td>{{ name}}</td>
+                        <td>{{ val }}</td>
+                        </tr>
+                    {% endfor %}
+                    </ul>
+                </tbody>
+            </table>
+        {% endif %}
+        {% if not res %}
+        <h1>Пока нет участников, но вы можете им стать!</h1>
+        {% endif %}
+    </div>
+</body>
+</html>
